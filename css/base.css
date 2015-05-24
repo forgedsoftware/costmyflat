@@ -1,0 +1,188 @@
+body {
+	background: #CCC url("../images/wood_pattern.png");
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 18px;
+}
+
+h1 {
+	margin: 20px;
+	color: #555;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1100px;
+}
+
+.section {
+	margin: 20px;
+	background: #222;
+	min-height: 100px;
+	opacity: 0.6;
+	border-radius: 10px;
+	padding: 20px;
+	color: #fff;
+}
+
+/** Controls **/
+
+.control {
+	padding: 20px;
+}
+
+.input {
+	font-size: 18px;
+}
+
+/** Flat **/
+
+#flat-container {
+	margin: 10px;
+	min-width: 500px;
+	min-height: 300px;
+	background-color: white;
+	overflow: auto;
+}
+
+.flat-border {
+	outline: 5px green dashed;
+}
+
+.room-placeholder {
+	background: #555;
+	width: 90px;
+	height: 90px;
+
+}
+
+/** Palette **/
+
+#palette {
+	/*overflow: none;*/
+}
+
+#palette > h2 {
+	clear: both;
+	/* float: left;*/
+}
+
+.room {
+	width: 90px;
+	height: 30px;
+	background-color: green;
+	margin: 5px;
+	text-align: center;
+	float: left;
+	cursor: move;
+	border: 2px #444;
+	font-size: 16px;
+	overflow: hidden;
+}
+
+.room > span {
+	margin: 5px;
+}
+
+#rooms > .room > span {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#flat-container > .room > span {
+	float: left;
+}
+
+.flat_room {
+	width: 90px;
+	height: 90px;
+}
+
+.living {
+	background-color: blue;
+}
+
+.garage {
+	background-color: orange;
+}
+
+.outdoors {
+	background-color: red;
+}
+
+#flatmates {
+	overflow: auto;
+}
+
+.flatmate {
+	/*float: left;*/
+	margin: 10px;
+	height: 32px;
+}
+
+.flatmate_name {
+	margin: 5px;
+	height: 20px;
+	width: 100px;
+}
+
+.flatmate_img {
+	display: inline-block;
+	vertical-align: middle;
+	background: url("../images/person-icon.png") no-repeat;
+	width: 32px;
+	height: 32px;
+	background-color: red;
+	cursor: move;
+	margin: 4px;
+	float: left;
+}
+
+.f1 {
+	background-color: green;
+}
+
+.f2 {
+	background-color: red;
+}
+
+.f3 {
+	background-color: yellow;
+}
+
+.members {
+	height: 32px;
+	width: 200px;
+	float: left;
+}
+
+/** Footer **/
+
+footer {
+	bottom: 0px;
+	width: 100%;
+	height: 100px;
+	margin-top: 100px;
+	padding-top: 10px;
+	background: #222;
+}
+
+.side_by_side {
+	
+}
+
+.footer_section {
+	margin: 10px 0px 0px 25px;
+	font-size: 18px;
+	color: #CCC;
+}
+
+.icon {
+	margin-right: 10px;
+	margin-bottom: 5px;
+	height: 25px;
+	width: 25px;
+	vertical-align: middle;
+}
