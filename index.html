@@ -13,13 +13,14 @@
 		<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 		<script src="js/randomColor.js"></script>
+		<script src="js/masks.js"></script>
 		<script src="js/app.js"></script>
 		<script src="js/directives.js"></script>
 
 		<link rel='stylesheet' href='css/base.css' type='text/css'/>
 	</head>
 	<body>
-		<div class="container body-container" ng-controller="FlatController" ng-init="updateResults()">
+		<div class="container body-container" ng-controller="FlatController">
 			<div id="title-container">
 				<div id="flat-logo"></div>
 				<h1>Cost My Flat</h1>
@@ -27,9 +28,9 @@
 			<div id="settings" class="section">
 				<p>Ever had to work out how my each flatmate should pay for rent? Need a transparent system that is just plain fair? Look no further! Model your flat below and we'll tell you how much each flatmate should pay and why.</p>
 				<div class="control">Rent costs
-					<input id="cost-selector" class="input" value="${{rent}}" required ng-minlength="1" ng-maxlength="5" auto-complete-cost></input>
+					<input id="cost-selector" class="input" ng-model="rent" ui-money-mask="0" max="20000" ng-change="updateResults()" auto-complete-cost></input>
 					per
-					<select id="freq-selector" class="input" ng-init="rentalPeriod = periods[1]" ng-model="rentalPeriod" ng-options="period.name for period in periods"></select>
+					<select id="freq-selector" class="input" ng-init="rentalPeriod = periods[1]" ng-model="rentalPeriod" ng-options="period.name for period in periods" ng-change="updateResults()"></select>
 				</div>
 			</div>
 			<div id="flat" class="section">
@@ -40,7 +41,7 @@
 						<span>{{room.template.name}}</span>
 						<span class="size">{{room.width}}x{{room.height}}</span>
 						<div class="members" sortable-members>
-							<div id="{{user.id}}" class="flatmate_img room_member" style="background-color: {{user.color}};" ng-repeat="user in room.users"></div>
+							<div id="{{user.id}}" title="{{user.name}}" class="flatmate_img room_member" style="background-color: {{user.color}};" ng-repeat="user in room.users"></div>
 						</div>
 					</div>
 				</div>
@@ -59,13 +60,15 @@
 				<div id="flatmates">
 					<div class="flatmate" ng-repeat="flatmate in flatmatePalette">
 						<div id="{{flatmate.id}}" class="flatmate_img flatmate-drag-image" style="background-color: {{flatmate.color}};" flatmate-drag></div>
-						<input class="flatmate_name" value="{{flatmate.name}}"></input>
+						<input class="flatmate_name" ng-model="flatmate.name" ng-change="updateResults()"></input>
 						<button ng-click="removeFlatmateFromPalette($index)">-</button>
 					</div>
 				</div>
 			</div>
 			<div id="results" class="section">
 				<h2>Costing</h2>
+				<span>per</span>
+				<select id="freq-selector" class="input" ng-init="costingPeriod = rentalPeriod" ng-model="costingPeriod" ng-options="period.name for period in periods" ng-change="updateResults()"></select>
 				<div id="costing">
 					<div><span>Total flat area: </span><span ng-bind="results.totalFlatArea"></span><span> m&#178;</span></div>
 					<div><span>Flatmates: </span><span ng-bind="results.flatmateSummary"></span></div>
@@ -78,7 +81,7 @@
 						</div>
 					</div>
 					<div>
-						<span>Total: </span>$<span ng-bind="rent"></span> per <span ng-bind="rentalPeriod.name"></span>
+						<span>Total: ${{calculatedTotal}} per {{costingPeriod.name}} ({{costingPeriod.days}} days)</span>
 					</div>
 				</div>
 			</div>

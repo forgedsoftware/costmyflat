@@ -1,10 +1,12 @@
 
 (function () {
-	var app = angular.module('flat', []);
+	var app = angular.module('flat', ['ui.utils.masks']);
 
 	app.controller('FlatController', ['$scope', function ($scope) {
 		$scope.rent = 500;
 		$scope.rentalPeriod;
+		$scope.costingPeriod;
+		$scope.calculatedTotal = 0;
 		$scope.periods = rentalPeriods;
 		$scope.roomPalette = roomPalette;
 		$scope.flatmatePalette = flatmatePalette;
@@ -14,6 +16,27 @@
 		};
 		$scope.flat = defaultFlat.flat;
 		$scope.flatmateAmounts = [];
+
+		$scope.deserialize = function (obj) {
+			obj = obj || {};
+			$scope.rent = obj.rent || 500;
+			$scope.rentalPeriod = {}; // TODO!!
+
+			$scope.updateResults();
+		}
+
+		$scope.serialize = function () {
+			return {
+				flat: $scope.flat,
+				rent: $scope.rent,
+				period: $scope.rentalPeriod.days
+			};
+		}
+
+		$scope.$watch('rentalPeriod', function (newVal) {
+			$scope.costingPeriod = newVal;
+			$scope.updateResults();
+		});
 
 		$scope.addFlatmateToPalette = function() {
 			addFlatMate();
@@ -70,7 +93,8 @@
 			// Costs
 			$scope.flatmateAmounts = [];
 			if (area > 0 && flatMates.length > 0) {
-				var costPerMeterSq = $scope.rent / area;
+				var costPerMeterSq = $scope.rent / $scope.rentalPeriod.days * $scope.costingPeriod.days / area;
+				var calAmountTotal = 0;
 				// for each flatmate
 				flatMatesFull.forEach(function (fm) {
 					$scope.flatmatePalette
@@ -100,8 +124,10 @@
 					});
 					// save flatmate
 					fmAmount.amount = Math.round(calculatedAmount * 100) / 100; // Round to 2dp
+					calAmountTotal += fmAmount.amount;
 					$scope.flatmateAmounts.push(fmAmount);
 				});
+				$scope.calculatedTotal = Math.round(calAmountTotal * 100) / 100; // Round to 2dp;
 			}
 
 			// And... update!
@@ -125,6 +151,10 @@
 		{
 			name: 'month',
 			days: 30
+		},
+		{
+			name: 'year',
+			days: 365
 		}
 	];
 
@@ -214,28 +244,35 @@
 				id: generateID('room'),
 				template: roomPalette[1],
 				width: 5,
-				height: 4,
+				height: 5,
+				users: []
+			},
+			{
+				id: generateID('room'),
+				template: roomPalette[2],
+				width: 3,
+				height: 3,
 				users: []
 			},
 			{
 				id: generateID('room'),
 				template: roomPalette[0],
 				width: 3,
-				height: 3,
+				height: 4,
 				users: [flatmatePalette[0]]
 			},
 			{
 				id: generateID('room'),
 				template: roomPalette[0],
 				width: 3,
-				height: 3,
+				height: 4,
 				users: [flatmatePalette[1]]
 			},
 			{
 				id: generateID('room'),
 				template: roomPalette[0],
 				width: 3,
-				height: 3,
+				height: 4,
 				users: [flatmatePalette[2]]
 			}
 		]
