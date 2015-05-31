@@ -12,63 +12,17 @@
 			totalFlatArea: 0,
 			flatmateSummary: 'None (0)'
 		};
-		$scope.flat = [];
+		$scope.flat = defaultFlat.flat;
 		$scope.flatmateAmounts = [];
-
-		$scope.findRoom = function(room_id) {
-			var room;
-			$scope.flat.forEach(function (rm) {
-				if (rm.id == room_id) {
-					room = rm;
-				}
-			});
-			return room;
-		}
-
-		$scope.setRoomSize = function(room_id, width, height) {
-			var room = $scope.findRoom(room_id);
-			room.width = width;
-			room.height = height;
-			$scope.updateResults();
-		}
-
-		$scope.addFlatmateToRoom = function(room_id, flatmate_id) {
-			var room = $scope.findRoom(room_id);
-			// TODO check if room already contains flatmate
-			var flatmate;
-			$scope.flatmatePalette.forEach(function (fm) {
-				if (fm.id == flatmate_id) {
-					flatmate = fm;
-				}
-			});
-			if (!flatmate) {
-				return false;
-			}
-			room.users.push(flatmate);
-			$scope.updateResults();
-			return true;
-		}
-
-		$scope.removeFlatmateFromRoom = function(room_id, flatmate_id) {
-			var room = $scope.findRoom(room_id);
-			var indexToRemove = -1;
-			room.users.forEach(function (fm, index) {
-				if (fm.id == flatmate_id) {
-					indexToRemove = index;
-				}
-			});
-			if (indexToRemove >= 0) {
-				room.users.splice(indexToRemove, 1);
-				$scope.updateResults();
-			}
-		}
 
 		$scope.addFlatmateToPalette = function() {
 			addFlatMate();
+			$scope.updateResults();
 		}
 
 		$scope.removeFlatmateFromPalette = function(index) { 
 			$scope.flatmatePalette.splice(index, 1);
+			$scope.updateResults();
 		}
 
 		$scope.addRoomToFlat = function (room) {
@@ -81,20 +35,6 @@
 			};
 			$scope.flat.push(model);
 			$scope.updateResults();
-			return model;
-		}
-
-		$scope.removeRoomFromFlat = function (room_id) {
-			var indexToRemove = -1;
-			$scope.flat.forEach(function (rm, index) {
-				if (rm.id == room_id) {
-					indexToRemove = index;
-				}
-			});
-			if (indexToRemove >= 0) {
-				$scope.flat.splice(indexToRemove, 1);
-				$scope.updateResults();
-			}
 		}
 
 		$scope.updateResults = function () {
@@ -128,9 +68,9 @@
 			$scope.results.flatmateSummary = flatmateSummary;
 
 			// Costs
+			$scope.flatmateAmounts = [];
 			if (area > 0 && flatMates.length > 0) {
 				var costPerMeterSq = $scope.rent / area;
-				$scope.flatmateAmounts = [];
 				// for each flatmate
 				flatMatesFull.forEach(function (fm) {
 					$scope.flatmatePalette
@@ -168,40 +108,6 @@
 			$scope.$digest();
 		}
 	}]);
-
-	app.directive('flatmateDrag', function () {
-		return {
-			restrict:'A',
-			link: function (scope, element, attrs) {
-				$(element).find('.flatmate_img').draggable({
-					helper: "clone",
-					start: function (event, ui) {
-						$("#flat-container > .room").addClass("flat-border");
-					},
-					stop: function (event, ui) {
-						$("#flat-container > .room").removeClass("flat-border");
-					}
-				});
-			}
-		};
-	});
-
-	app.directive('roomDrag', function () {
-		return {
-			restrict:'A',
-			link: function (scope, element, attrs) {
-				$(element).draggable({
-					helper: "clone",
-					start: function (event, ui) {
-						$("#flat-container").addClass("flat-border");
-					},
-					stop: function (event, ui) {
-						$("#flat-container").removeClass("flat-border");
-					}
-				});
-			}
-		};
-	});
 
 	var rentalPeriods = [
 		{
@@ -301,5 +207,40 @@
 	addFlatMate();
 	addFlatMate();
 	addFlatMate();
+
+	var defaultFlat = {
+		flat: [
+			{
+				id: generateID('room'),
+				template: roomPalette[1],
+				width: 5,
+				height: 4,
+				users: []
+			},
+			{
+				id: generateID('room'),
+				template: roomPalette[0],
+				width: 3,
+				height: 3,
+				users: [flatmatePalette[0]]
+			},
+			{
+				id: generateID('room'),
+				template: roomPalette[0],
+				width: 3,
+				height: 3,
+				users: [flatmatePalette[1]]
+			},
+			{
+				id: generateID('room'),
+				template: roomPalette[0],
+				width: 3,
+				height: 3,
+				users: [flatmatePalette[2]]
+			}
+		]
+	};
+
+
 
 })();

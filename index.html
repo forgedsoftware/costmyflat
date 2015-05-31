@@ -14,106 +14,35 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 		<script src="js/randomColor.js"></script>
 		<script src="js/app.js"></script>
-
+		<script src="js/directives.js"></script>
 
 		<link rel='stylesheet' href='css/base.css' type='text/css'/>
-
-		<script>
-			$(function() {
-				var autocompleteCosts = [];
-				for(var i = 0; i < 25; i++) {
-					autocompleteCosts.push("$" + i * 100)
-				}
-				$("#cost-selector").autocomplete({
-					source: autocompleteCosts
-				});
-				var sortableIn;
-				$("#flat-container").sortable({
-					grid: [40, 40],
-					receive: function(e, ui) { sortableIn = 1; },
-					over: function(e, ui) { sortableIn = 1; },
-					out: function(e, ui) { sortableIn = 0; },
-					beforeStop: function(e, ui) {
-						if (sortableIn == 0) {
-							var room_id = ui.item.attr('id');
-							angular.element(ui.item).scope().removeRoomFromFlat(room_id);
-							ui.item.remove();
-						}
-					}
-				});
-				$("#flat-container").disableSelection();
-				$("#flat-container").droppable({
-					accept: ".room",
-					drop: function(event, ui) {
-						var existing_room = ui.draggable;
-						if (!existing_room.hasClass("flat_room")) {
-							var room = $(existing_room).clone();
-							room.resizable({
-								connectWith: "#flat-container",
-								grid: [30, 30],
-								resize: function(event, ui) {
-									var width = ui.element.width()/30
-									var height = ui.element.height()/30
-									room.find(".size").html(width + "x" + height);
-									var room_id = $(this).attr('id');
-									angular.element(room).scope().setRoomSize(room_id, width, height);
-								}
-							});
-							room.droppable({
-								accept: ".flatmate_img",
-								drop: function(event, ui) {
-									var existing_flatmate = ui.draggable;
-									if (!existing_flatmate.hasClass("room_member")) {
-										var flatmate = $(existing_flatmate).clone();
-										flatmate.addClass("room_member");
-										$(this).find('.members').append(flatmate);
-										var id = flatmate.attr('id');
-										var room_id = $(this).attr('id');
-										angular.element(flatmate).scope().addFlatmateToRoom(room_id, id);
-									}
-								}
-							});
-							var sortableIn2;
-							room.find(".members").sortable({
-								receive: function(e, ui) { sortableIn2 = 1; },
-								over: function(e, ui) { sortableIn2 = 1; },
-								out: function(e, ui) { sortableIn2 = 0; },
-								beforeStop: function(e, ui) {
-									if (sortableIn2 == 0) {
-										var id = ui.item.attr('id');
-										var room_id = $(this).attr('id');
-										angular.element(this).scope().removeFlatmateFromRoom(room_id, id);
-										ui.item.remove();
-									} 
-								}
-							});
-							room.addClass("flat_room");
-							room.find(".size").html("3x3");
-							$(this).append(room);
-							var room_model = angular.element(existing_room).scope().room;
-							var model = angular.element(room).scope().addRoomToFlat(room_model);
-							room.attr('id', model.id);
-						}
-					}
-				});
-			});
-		</script>
 	</head>
 	<body>
-		<div class="container" ng-controller="FlatController">
-			<h1>Cost My Flat</h1>
+		<div class="container body-container" ng-controller="FlatController" ng-init="updateResults()">
+			<div id="title-container">
+				<div id="flat-logo"></div>
+				<h1>Cost My Flat</h1>
+			</div>
 			<div id="settings" class="section">
 				<p>Ever had to work out how my each flatmate should pay for rent? Need a transparent system that is just plain fair? Look no further! Model your flat below and we'll tell you how much each flatmate should pay and why.</p>
 				<div class="control">Rent costs
-					<input id="cost-selector" class="input" value="${{rent}}" required ng-minlength="1" ng-maxlength="5"></input>
+					<input id="cost-selector" class="input" value="${{rent}}" required ng-minlength="1" ng-maxlength="5" auto-complete-cost></input>
 					per
 					<select id="freq-selector" class="input" ng-init="rentalPeriod = periods[1]" ng-model="rentalPeriod" ng-options="period.name for period in periods"></select>
 				</div>
 			</div>
 			<div id="flat" class="section">
 				<h2>Flat</h2>
-				<div id="flat-container">
-
+				<div id="flat-container" sortable-grid room-drop>
+					<div class="room flat_room" ng-repeat="room in flat" style="background-color: {{room.template.color}};"
+							ng-style="{'width': {{room.width * 30}} + 'px', 'height': {{room.height * 30}} + 'px'}" room-resize flatmate-drop>
+						<span>{{room.template.name}}</span>
+						<span class="size">{{room.width}}x{{room.height}}</span>
+						<div class="members" sortable-members>
+							<div id="{{user.id}}" class="flatmate_img room_member" style="background-color: {{user.color}};" ng-repeat="user in room.users"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div id="palette" class="section">
@@ -121,13 +50,15 @@
 				<p>Drag and drop rooms onto your flat, and flatmates onto the rooms they will use</p>
 				<h2>Rooms</h2>
 				<div id="rooms">
-					<div class="room" ng-repeat="room in roomPalette" style="background-color: {{room.color}};" room-drag><span>{{room.name}}</span><span class="size"></span><div class="members"></div></div>
+					<div class="room room-drag" ng-repeat="room in roomPalette" style="background-color: {{room.color}};" room-drag>
+						<span>{{room.name}}</span>
+					</div>
 				</div>
 				<h2>Flatmates</h2>
 				<button ng-click="addFlatmateToPalette()" ng-disabled="flatmatePalette.length >= 15">+</button>
 				<div id="flatmates">
-					<div class="flatmate" ng-repeat="flatmate in flatmatePalette" flatmate-drag>
-						<div id="{{flatmate.id}}" class="flatmate_img" style="background-color: {{flatmate.color}};"></div>
+					<div class="flatmate" ng-repeat="flatmate in flatmatePalette">
+						<div id="{{flatmate.id}}" class="flatmate_img flatmate-drag-image" style="background-color: {{flatmate.color}};" flatmate-drag></div>
 						<input class="flatmate_name" value="{{flatmate.name}}"></input>
 						<button ng-click="removeFlatmateFromPalette($index)">-</button>
 					</div>
@@ -140,13 +71,15 @@
 					<div><span>Flatmates: </span><span ng-bind="results.flatmateSummary"></span></div>
 					<h3>Summary per flatmate</h3>
 					<div>
-						<div ng-repeat="flatmateAmount in flatmateAmounts">
+						<div class="flatmate-cost" ng-repeat="flatmateAmount in flatmateAmounts">
 							<div class="flatmate_img" style="background-color: {{flatmateAmount.color}};"></div>
 							<span>{{flatmateAmount.name}}</span>
 							<span>${{flatmateAmount.amount}}</span>
 						</div>
 					</div>
-					<div><span>Total: </span>$<span ng-bind="rent"></span> per <span ng-bind="rentalPeriod.name"></span>
+					<div>
+						<span>Total: </span>$<span ng-bind="rent"></span> per <span ng-bind="rentalPeriod.name"></span>
+					</div>
 				</div>
 			</div>
 		</div>
