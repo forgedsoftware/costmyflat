@@ -22,10 +22,10 @@ addSimpleAppDirective('flatmateDrag', function ($scope, element, attrs) {
 	$(element).draggable({
 		helper: "clone",
 		start: function (event, ui) {
-			$("#flat-container > .room").addClass("flat-border");
+			$("#flat-container > .room").addClass("room-border");
 		},
 		stop: function (event, ui) {
-			$("#flat-container > .room").removeClass("flat-border");
+			$("#flat-container > .room").removeClass("room-border");
 		}
 	});
 });

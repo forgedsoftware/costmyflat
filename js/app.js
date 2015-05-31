@@ -161,27 +161,27 @@
 	var roomPalette = [
 		{
 			name: 'Bedroom',
-			color: 'green'
+			color: '#16a085'
 		},
 		{
 			name: 'Living Area',
-			color: 'blue'	
+			color: '#d35400'
 		},
 		{
 			name: 'Bathroom',
-			color: 'blue'	
+			color: '#8e44ad'
 		},
 		{
 			name: 'Kitchen',
-			color: 'blue'	
+			color: '#c0392b'
 		},
 		{
 			name: 'Garage',
-			color: 'orange'	
+			color: '#34495e'
 		},
 		{
 			name: 'Outdoors',
-			color: 'red'
+			color: '#27ae60'
 		}
 	];
 
@@ -249,13 +249,6 @@
 			},
 			{
 				id: generateID('room'),
-				template: roomPalette[2],
-				width: 3,
-				height: 3,
-				users: []
-			},
-			{
-				id: generateID('room'),
 				template: roomPalette[0],
 				width: 3,
 				height: 4,
@@ -274,6 +267,13 @@
 				width: 3,
 				height: 4,
 				users: [flatmatePalette[2]]
+			},
+			{
+				id: generateID('room'),
+				template: roomPalette[2],
+				width: 3,
+				height: 3,
+				users: []
 			}
 		]
 	};

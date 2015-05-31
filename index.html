@@ -27,49 +27,52 @@
 			</div>
 			<div id="settings" class="section">
 				<p>Ever had to work out how my each flatmate should pay for rent? Need a transparent system that is just plain fair? Look no further! Model your flat below and we'll tell you how much each flatmate should pay and why.</p>
-				<div class="control">Rent costs
+				<div class="control">
+					<span>Rent costs</span>
 					<input id="cost-selector" class="input" ng-model="rent" ui-money-mask="0" max="20000" ng-change="updateResults()" auto-complete-cost></input>
-					per
+					<span>per</span>
 					<select id="freq-selector" class="input" ng-init="rentalPeriod = periods[1]" ng-model="rentalPeriod" ng-options="period.name for period in periods" ng-change="updateResults()"></select>
 				</div>
 			</div>
-			<div id="flat" class="section">
-				<h2>Flat</h2>
-				<div id="flat-container" sortable-grid room-drop>
-					<div class="room flat_room" ng-repeat="room in flat" style="background-color: {{room.template.color}};"
-							ng-style="{'width': {{room.width * 30}} + 'px', 'height': {{room.height * 30}} + 'px'}" room-resize flatmate-drop>
-						<span>{{room.template.name}}</span>
-						<span class="size">{{room.width}}x{{room.height}}</span>
-						<div class="members" sortable-members>
-							<div id="{{user.id}}" title="{{user.name}}" class="flatmate_img room_member" style="background-color: {{user.color}};" ng-repeat="user in room.users"></div>
+			<div id="horizontal-sections">
+				<div id="flat" class="section">
+					<h2>Flat</h2>
+					<div id="flat-container" sortable-grid room-drop>
+						<div class="room flat_room" ng-repeat="room in flat" style="background-color: {{room.template.color}};"
+								ng-style="{'width': {{room.width * 30}} + 'px', 'height': {{room.height * 30}} + 'px'}" room-resize flatmate-drop>
+							<span>{{room.template.name}}</span>
+							<span class="size">{{room.width}}x{{room.height}}</span>
+							<div class="members" sortable-members>
+								<div id="{{user.id}}" title="{{user.name}}" class="flatmate_img room_member" style="background-color: {{user.color}};" ng-repeat="user in room.users"></div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div id="palette" class="section">
-				<h2>Palette</h2>
-				<p>Drag and drop rooms onto your flat, and flatmates onto the rooms they will use</p>
-				<h2>Rooms</h2>
-				<div id="rooms">
-					<div class="room room-drag" ng-repeat="room in roomPalette" style="background-color: {{room.color}};" room-drag>
-						<span>{{room.name}}</span>
+				<div id="palette" class="section">
+					<h2>Palette</h2>
+					<p>Drag and drop rooms onto your flat, and flatmates onto the rooms they will use</p>
+					<h2>Rooms</h2>
+					<div id="rooms">
+						<div class="room room-drag" ng-repeat="room in roomPalette" style="background-color: {{room.color}};" room-drag>
+							<span>{{room.name}}</span>
+						</div>
 					</div>
-				</div>
-				<h2>Flatmates</h2>
-				<button ng-click="addFlatmateToPalette()" ng-disabled="flatmatePalette.length >= 15">+</button>
-				<div id="flatmates">
-					<div class="flatmate" ng-repeat="flatmate in flatmatePalette">
-						<div id="{{flatmate.id}}" class="flatmate_img flatmate-drag-image" style="background-color: {{flatmate.color}};" flatmate-drag></div>
-						<input class="flatmate_name" ng-model="flatmate.name" ng-change="updateResults()"></input>
-						<button ng-click="removeFlatmateFromPalette($index)">-</button>
+					<h2>Flatmates</h2>
+					<button ng-click="addFlatmateToPalette()" ng-disabled="flatmatePalette.length >= 15">+</button>
+					<div id="flatmates">
+						<div class="flatmate" ng-repeat="flatmate in flatmatePalette">
+							<div id="{{flatmate.id}}" class="flatmate_img flatmate-drag-image" style="background-color: {{flatmate.color}};" flatmate-drag></div>
+							<input class="flatmate_name" ng-model="flatmate.name" ng-change="updateResults()"></input>
+							<button ng-click="removeFlatmateFromPalette($index)">-</button>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div id="results" class="section">
 				<h2>Costing</h2>
-				<span>per</span>
-				<select id="freq-selector" class="input" ng-init="costingPeriod = rentalPeriod" ng-model="costingPeriod" ng-options="period.name for period in periods" ng-change="updateResults()"></select>
 				<div id="costing">
+					<span>Cost per</span>
+					<select id="freq-selector" class="input" ng-init="costingPeriod = rentalPeriod" ng-model="costingPeriod" ng-options="period.name for period in periods" ng-change="updateResults()"></select>
 					<div><span>Total flat area: </span><span ng-bind="results.totalFlatArea"></span><span> m&#178;</span></div>
 					<div><span>Flatmates: </span><span ng-bind="results.flatmateSummary"></span></div>
 					<h3>Summary per flatmate</h3>
@@ -80,10 +83,12 @@
 							<span>${{flatmateAmount.amount}}</span>
 						</div>
 					</div>
-					<div>
-						<span>Total: ${{calculatedTotal}} per {{costingPeriod.name}} ({{costingPeriod.days}} days)</span>
-					</div>
+					<span>Total: ${{calculatedTotal}} per {{costingPeriod.name}} ({{costingPeriod.days}} days)</span>
 				</div>
+			</div>
+			<div id="how-it-works" class="section">
+				<h2>How It Works</h2>
+				<p>Some text here</h2>
 			</div>
 		</div>
 		<footer>
@@ -93,6 +98,9 @@
 				</div>
 				<div class="footer_section">
 					<img class="icon" src="./images/github-icon.png" />Hosted on <a href="https://github.com/forgedsoftware/costmyflat">GitHub</a>
+				</div>
+				<div class="footer_section">
+					<span>Built with: <a href="https://jqueryui.com/">jQuery-UI</a>, <a href="https://angularjs.org/">AngularJS</a>, <a href="http://flatuicolors.com">flatuicolors</a>, and <a href="http://iconmonstr.com/">iconmonstr</a></span>
 				</div>
 			</div>
 		</footer>
