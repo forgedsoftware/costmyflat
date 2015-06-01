@@ -38,7 +38,7 @@
 				<div id="flat" class="section">
 					<h2>Flat</h2>
 					<div id="flat-container" sortable-grid room-drop>
-						<div class="room flat_room" ng-repeat="room in flat" style="background-color: {{room.template.color}};"
+						<div class="room flat_room" ng-repeat="room in flat" style="background: {{room.template.color}};"
 								ng-style="{'width': {{room.width * 30}} + 'px', 'height': {{room.height * 30}} + 'px'}" room-resize flatmate-drop>
 							<span>{{room.template.name}}</span>
 							<span class="size">{{room.width}}x{{room.height}}</span>
@@ -50,22 +50,22 @@
 				</div>
 				<div id="palette" class="section">
 					<h2>Palette</h2>
-					<p>Drag and drop rooms onto your flat, and flatmates onto the rooms they will use</p>
-					<h2>Rooms</h2>
+					<p>Drag and drop rooms onto your flat, and flatmates onto the rooms they will use.</p>
+					<h2>Room Templates</h2>
 					<div id="rooms">
 						<div class="room room-drag" ng-repeat="room in roomPalette" style="background-color: {{room.color}};" room-drag>
 							<span>{{room.name}}</span>
 						</div>
 					</div>
-					<h2>Flatmates</h2>
-					<button ng-click="addFlatmateToPalette()" ng-disabled="flatmatePalette.length >= 15">+</button>
+					<h2>Potential Flatmates</h2>
 					<div id="flatmates">
 						<div class="flatmate" ng-repeat="flatmate in flatmatePalette">
 							<div id="{{flatmate.id}}" class="flatmate_img flatmate-drag-image" style="background-color: {{flatmate.color}};" flatmate-drag></div>
-							<input class="flatmate_name" ng-model="flatmate.name" ng-change="updateResults()"></input>
+							<input class="flatmate_name input" ng-model="flatmate.name" ng-change="updateResults()"></input>
 							<button ng-click="removeFlatmateFromPalette($index)">-</button>
 						</div>
 					</div>
+					<button id="add-button" ng-click="addFlatmateToPalette()" ng-disabled="flatmatePalette.length >= 15">Add Flatmate</button>
 				</div>
 			</div>
 			<div id="results" class="section">

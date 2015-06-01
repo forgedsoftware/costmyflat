@@ -30,6 +30,22 @@ body {
 h2 {
 	color: #111;
 	padding: 10px;
+	font-size: 24px;
+}
+
+button {
+	line-height: 0.9;
+	font-size: 20px;
+	vertical-align: middle;
+	padding: 5px 10px;
+	border: 1px #75706B solid;
+	background: #C1C1C1;
+	background: linear-gradient(to bottom, #c1c1c1 0%,#d8d8d8 100%); /* W3C */
+}
+
+button:hover {
+	background: #75706B;
+	background: linear-gradient(to bottom, #75706b 0%,#c1c1c1 100%); /* W3C */
 }
 
 /** Title */
@@ -74,10 +90,11 @@ h1 {
 #flat-container {
 	margin: 10px;
 	padding: 5px;
-	min-height: 300px;
-	background-color: #75706B;
+	min-height: 350px;
 	border-radius: 5px;
 	overflow: hidden;
+	background: #75706B;
+	background: linear-gradient(to bottom, #75706B 0%,#AAA 100%); /* W3C */
 }
 
 .flat-border {
@@ -108,7 +125,7 @@ h1 {
 .room {
 	color: #EEE;
 	width: 90px;
-	height: 30px;
+	height: 40px;
 	background-color: #54ACD2;
 	margin: 5px;
 	text-align: center;
@@ -121,6 +138,21 @@ h1 {
 
 .room > span {
 	margin: 5px;
+}
+
+.room-drag {
+	line-height: 2;
+}
+
+.members {
+	height: 32px;
+	width: 200px;
+	float: left;
+}
+
+#rooms {
+	margin-left: 15px;
+	overflow: auto;
 }
 
 #rooms > .room > span {
@@ -138,18 +170,18 @@ h1 {
 }
 
 #flatmates {
+	margin-left: 20px;
 	overflow: auto;
 }
 
 .flatmate {
 	/*float: left;*/
-	margin: 10px;
-	height: 32px;
+	margin-bottom: 5px;
 }
 
 .flatmate_name {
 	margin: 5px;
-	height: 20px;
+	height: 26px;
 	width: 100px;
 }
 
@@ -159,16 +191,13 @@ h1 {
 	background: url("../images/person-icon.png") no-repeat;
 	width: 32px;
 	height: 32px;
-	background-color: red;
 	cursor: move;
 	margin: 4px;
 	float: left;
 }
 
-.members {
-	height: 32px;
-	width: 200px;
-	float: left;
+#add-button {
+	margin: 10px;
 }
 
 /** Costing */
@@ -183,11 +212,11 @@ h1 {
 
 .flatmate-cost {
 	display: block;
-	height: 40px;
 	margin: 10px;
 }
 
 .flatmate-cost > span {
+	min-width: 100px;
 	font-size: 26px;
 	display: inline-block;
 	padding: 5px 10px 0px 10px;
