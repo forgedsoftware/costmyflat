@@ -62,7 +62,7 @@ addSimpleAppDirective('sortableGrid', function ($scope, element, attrs) {
 		beforeStop: function(e, ui) {
 			if (sortableIn == 0) {
 				var room = angular.element(ui.item).scope().room;
-				removeFromArrayById($scope.flat, room);
+				$scope.removeFromArrayById($scope.flat, room);
 				ui.item.remove();
 				$scope.updateResults();
 			}
@@ -90,7 +90,7 @@ addSimpleAppDirective('sortableMembers', function ($scope, element, attrs) {
 		beforeStop: function(e, ui) {
 			if (sortableIn == 0) {
 				var user = angular.element(ui.item).scope().user;
-				removeFromArrayById($scope.room.users, user);
+				$scope.removeFromArrayById($scope.room.users, user);
 				ui.item.remove();
 				$scope.updateResults();
 			}
@@ -136,17 +136,3 @@ addSimpleAppDirective('flatmateDrop', function ($scope, element, attrs) {
 		}
 	});
 });
-
-// HELPER FUNCTIONS
-
-function removeFromArrayById (array, item) {
-	var indexToRemove = -1;
-	array.forEach(function (arrayItem, index) {
-		if (arrayItem.id == item.id) {
-			indexToRemove = index;
-		}
-	});
-	if (indexToRemove >= 0) {
-		array.splice(indexToRemove, 1);
-	}
-}

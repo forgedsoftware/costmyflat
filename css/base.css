@@ -19,33 +19,18 @@ body {
 
 .section {
 	margin: 20px 20px;
-	background: #DDD;
-	min-height: 100px;
+	background: #E6E6E6;
+	min-height: 60px;
 	border-radius: 7px;
 	padding: 20px;
 	color: #555;
-	box-shadow: 5px 5px 5px #C1C1C1;
+	box-shadow: 5px 5px 10px #C1C1C1;
 }
 
 h2 {
 	color: #111;
 	padding: 10px;
 	font-size: 24px;
-}
-
-button {
-	line-height: 0.9;
-	font-size: 20px;
-	vertical-align: middle;
-	padding: 5px 10px;
-	border: 1px #75706B solid;
-	background: #C1C1C1;
-	background: linear-gradient(to bottom, #c1c1c1 0%,#d8d8d8 100%); /* W3C */
-}
-
-button:hover {
-	background: #75706B;
-	background: linear-gradient(to bottom, #75706b 0%,#c1c1c1 100%); /* W3C */
 }
 
 /** Title */
@@ -83,15 +68,36 @@ h1 {
 .input {
 	font-size: 18px;
 	max-width: 170px;
+	padding: 3px;
+	cursor: pointer;
+}
+
+#weighting-toggle {
+	padding: 10px;
+	overflow: auto;
+}
+
+#weighting-toggle > * {
+	float: left;
+}
+
+#weighting-toggle > span {
+	padding: 10px;
 }
 
 /** Flat **/
+
+#flat {
+	display: flex;
+	flex-flow: column;
+}
 
 #flat-container {
 	margin: 10px;
 	padding: 5px;
 	min-height: 350px;
 	border-radius: 5px;
+	flex: 2;
 	overflow: hidden;
 	background: #75706B;
 	background: linear-gradient(to bottom, #75706B 0%,#AAA 100%); /* W3C */
@@ -111,62 +117,88 @@ h1 {
 	outline: 3px #0D37F8 dashed;
 }
 
+.flat_room {
+	float: left;
+	width: 90px;
+	height: 90px;
+	padding: 5px;
+	text-align: left;
+	box-shadow: 5px 5px 10px #555;
+}
+
+.room > * {
+	margin: 5px;
+}
+
+.room_member {
+	margin-right: 5px;
+	margin-top: 5px;
+	box-shadow: 2px 2px 6px #555;
+}
+
 /** Palette **/
-
-#palette {
-	/*overflow: none;*/
-}
-
-#palette > h2 {
-	/* clear: both; */
-	/* float: left;*/
-}
 
 .room {
 	color: #EEE;
-	width: 90px;
-	height: 40px;
-	background-color: #54ACD2;
 	margin: 5px;
-	text-align: center;
-	float: left;
 	cursor: move;
 	border: 2px #444;
 	font-size: 16px;
 	overflow: hidden;
 }
 
-.room > span {
-	margin: 5px;
+.room-drag {
+	text-align: center;
+	box-shadow: 5px 5px 10px #C1C1C1;
 }
 
 .room-drag {
-	line-height: 2;
-}
-
-.members {
-	height: 32px;
-	width: 200px;
-	float: left;
+	line-height: 3;
+	width: 90px;
+	height: 50px;
 }
 
 #rooms {
-	margin-left: 15px;
+	margin-left: 10px;
 	overflow: auto;
 }
 
-#rooms > .room > span {
-	display: inline-block;
-	vertical-align: middle;
-}
-
-#flat-container > .room > span {
+.room-palette {
+	margin: 5px;
 	float: left;
 }
 
-.flat_room {
+.weighting {
 	width: 90px;
-	height: 90px;
+	margin: 5px;
+}
+
+.animate-hide > * {
+	-webkit-transition: all linear 0.2s;
+	transition: all linear 0.2s;
+	opacity: 1;
+}
+
+.animate-hide.ng-hide > * {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	height: 0px;
+	opacity: 0;
+}
+
+.weighting-input {
+	text-align: center;
+	padding: 3px;
+}
+
+.btn-down {
+	margin: 10px;
+	background: #75706B;
+	background: linear-gradient(to bottom, #75706b 0%,#c1c1c1 100%); /* W3C */
+}
+
+.btn-up {
+	margin: 10px;
 }
 
 #flatmates {
@@ -181,8 +213,11 @@ h1 {
 
 .flatmate_name {
 	margin: 5px;
-	height: 26px;
+	height: 22px;
 	width: 100px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-top: 0px;
 }
 
 .flatmate_img {
@@ -191,13 +226,51 @@ h1 {
 	background: url("../images/person-icon.png") no-repeat;
 	width: 32px;
 	height: 32px;
+	float: left;
+	box-shadow: 2px 2px 6px #555;
+}
+
+.flatmate-drag-image {
 	cursor: move;
-	margin: 4px;
+	margin: 5px;
 	float: left;
 }
 
-#add-button {
-	margin: 10px;
+.button {
+	margin: 5px;
+	line-height: 2em;
+	font-weight: bold;
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
+	font-size: 18px;
+	width: 4em;
+	height: 2em;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+	outline: 0;
+	box-sizing: border-box;
+	border: none;
+	box-shadow: 5px 5px 10px #C1C1C1;
+}
+
+.add-button {
+	margin-left: 15px;
+	background: #86d993;
+}
+
+.add-button:hover {
+	background: #57e06c;
+}
+
+.remove-button {
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	background: #f45c44;
+}
+
+.remove-button:hover {
+	background: #FF3A19;
 }
 
 /** Costing */

@@ -1,6 +1,6 @@
 
 (function () {
-	var app = angular.module('flat', ['ui.utils.masks']);
+	var app = angular.module('flat', ['ui.utils.masks', 'ngAnimate']);
 
 	app.controller('FlatController', ['$scope', function ($scope) {
 		$scope.rent = 500;
@@ -16,6 +16,7 @@
 		};
 		$scope.flat = defaultFlat.flat;
 		$scope.flatmateAmounts = [];
+		$scope.showWeighting = false;
 
 		$scope.deserialize = function (obj) {
 			obj = obj || {};
@@ -43,7 +44,11 @@
 			$scope.updateResults();
 		}
 
-		$scope.removeFlatmateFromPalette = function(index) { 
+		$scope.removeFlatmateFromPalette = function(index) {
+			var user = $scope.flatmatePalette[index];
+			$scope.flat.forEach(function (room) {
+				$scope.removeFromArrayById(room.users, user);
+			});
 			$scope.flatmatePalette.splice(index, 1);
 			$scope.updateResults();
 		}
@@ -58,6 +63,18 @@
 			};
 			$scope.flat.push(model);
 			$scope.updateResults();
+		}
+
+		$scope.removeFromArrayById = function (array, item) {
+			var indexToRemove = -1;
+			array.forEach(function (arrayItem, index) {
+				if (arrayItem.id == item.id) {
+					indexToRemove = index;
+				}
+			});
+			if (indexToRemove >= 0) {
+				array.splice(indexToRemove, 1);
+			}
 		}
 
 		$scope.updateResults = function () {
@@ -161,27 +178,33 @@
 	var roomPalette = [
 		{
 			name: 'Bedroom',
-			color: '#16a085'
+			color: '#16a085',
+			weighting: 1
 		},
 		{
 			name: 'Living Area',
-			color: '#d35400'
+			color: '#d35400',
+			weighting: 1
 		},
 		{
 			name: 'Bathroom',
-			color: '#8e44ad'
+			color: '#8e44ad',
+			weighting: 1
 		},
 		{
 			name: 'Kitchen',
-			color: '#c0392b'
+			color: '#c0392b',
+			weighting: 1
 		},
 		{
 			name: 'Garage',
-			color: '#34495e'
+			color: '#34495e',
+			weighting: 0.5
 		},
 		{
 			name: 'Outdoors',
-			color: '#27ae60'
+			color: '#27ae60',
+			weighting: 0.2
 		}
 	];
 
@@ -277,7 +300,5 @@
 			}
 		]
 	};
-
-
 
 })();
