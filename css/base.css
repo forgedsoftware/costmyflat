@@ -130,6 +130,11 @@ h1 {
 	margin: 5px;
 }
 
+.members {
+	height: 120px;
+	width: 200px;
+}
+
 .room_member {
 	margin-right: 5px;
 	margin-top: 5px;
