@@ -1,5 +1,6 @@
 
-app.controller('FlatController', ['$scope', 'idService', 'flatmateService', function ($scope, idService, flatmateService) {
+app.controller('FlatController', ['$scope', '$location', 'idService', 'flatmateService', 'persistenceService',
+		function ($scope, $location, idService, flatmateService, persistenceService) {
 	$scope.rent;
 	$scope.flat;
 	$scope.rentalPeriod;
@@ -7,6 +8,7 @@ app.controller('FlatController', ['$scope', 'idService', 'flatmateService', func
 	$scope.costingPeriod;
 
 	// Calculated
+
 	$scope.calculatedTotal = 0;
 	$scope.periods = data.rentalPeriods;
 	$scope.roomPalette = data.roomPalette;
@@ -16,6 +18,10 @@ app.controller('FlatController', ['$scope', 'idService', 'flatmateService', func
 	};
 	$scope.flatmateAmounts = [];
 	$scope.showWeighting = false;
+
+	// Persistence
+
+	$scope.key = null;
 
 	$scope.setup = function () {
 		var defaultFlat = $scope.getDefaultFlat();
@@ -31,10 +37,40 @@ app.controller('FlatController', ['$scope', 'idService', 'flatmateService', func
 		$scope.updateResults();
 	}
 
+	$scope.save = function() {
+		if ($scope.key) {
+			$scope.key = persistenceService.getKey();
+			$location.search('id', $scope.key);
+		}
+		persistenceService.save($scope.key, $scope.serialize());
+	}
+
+	$scope.load = function() {
+		$scope.key = ($location.search().id || null);
+		if ($scope.key) {
+			$scope.deserialize(persistenceService.load($scope.key));
+		}
+	}
+
+	$scope.remove = function() {
+		if ($scope.key) {
+			persistenceService.remove($scope.key);
+			$scope.key = null;
+			$location.search('id', $scope.key);
+		}
+	}
+
 	$scope.deserialize = function (obj) {
+		flatmateService.reset();
+
+		var defaultFlat = $scope.getDefaultFlat();
 		obj = obj || {};
-		$scope.rent = obj.rent || 500;
-		$scope.rentalPeriod = {}; // TODO!!
+
+		$scope.rent = obj.rent || defaultFlat.rent;
+		$scope.flat = obj.flat || defaultFlat.flat;
+		$scope.rentalPeriod = obj.period || defaultFlat.period;
+		$scope.costingPeriod = $scope.rentalPeriod;
+		$scope.flatmatePalette = obj.flatmates || defaultFlat.flatmates;
 
 		$scope.updateResults();
 	}
@@ -43,9 +79,12 @@ app.controller('FlatController', ['$scope', 'idService', 'flatmateService', func
 		return {
 			flat: $scope.flat,
 			rent: $scope.rent,
-			period: $scope.rentalPeriod.days
+			period: $scope.rentalPeriod,
+			flatmates: $scope.flatmatePalette
 		};
 	}
+
+	// General Operations
 
 	$scope.$watch('rentalPeriod', function (newVal) {
 		$scope.costingPeriod = newVal;
@@ -89,6 +128,8 @@ app.controller('FlatController', ['$scope', 'idService', 'flatmateService', func
 			array.splice(indexToRemove, 1);
 		}
 	}
+
+	// Update
 
 	$scope.updateResults = function () {
 		var area = 0;
@@ -213,6 +254,7 @@ app.controller('FlatController', ['$scope', 'idService', 'flatmateService', func
 	}
 
 	$scope.setup();
+	$scope.load();
 }]);
 
 var data = {

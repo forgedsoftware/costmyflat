@@ -263,10 +263,6 @@ h1 {
 	background: #86d993;
 }
 
-.wide-button {
-	width: 6em;
-}
-
 .add-button:hover {
 	background: #57e06c;
 }
@@ -302,6 +298,71 @@ h1 {
 	font-size: 26px;
 	display: inline-block;
 	padding: 5px 10px 0px 10px;
+}
+
+/** Controls **/
+
+#social {
+	overflow: auto;
+}
+
+.social-section {
+	float: none;
+	margin-right: 80px;
+}
+
+.social-section > * {
+	margin: 5px;
+}
+
+.social-section > a > img {
+	height: 2em;
+	opacity: 0.8;
+}
+
+.social-section > a > img:hover {
+	opacity: 1;
+}
+
+.wide-button {
+	width: 6em;
+	margin-top: 0px;
+}
+
+.coming-soon-container {
+	margin-top: 0px;
+	display: inline-block;
+}
+
+.coming-soon-button {
+	background-color: #C1C1C1;
+}
+
+.coming-soon-button:hover {
+	background-color: #AAA;
+}
+
+.coming-soon {
+	position: absolute;
+	font-size: 0.6em;
+	opacity: 0.6;
+	margin-left: 5px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 3.5em 7em 0 0;
+	border-color: orange transparent transparent transparent;
+}
+
+.coming-soon-text {
+	position: absolute;
+	float: left;
+	margin-left: 5px;
+	padding: 3px;
+	font-size: 0.55em;
+	text-align: left;
+	width: 2em;
+	font-weight: bold;
 }
 
 /** How it works */
@@ -364,5 +425,9 @@ footer {
 
 	#palette {
 		flex: 2;
+	}
+
+	.social-section {
+		float: left;
 	}
 }

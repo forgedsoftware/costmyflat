@@ -43,12 +43,12 @@
 				<div id="flat" class="section">
 					<h2>Flat</h2>
 					<div id="flat-container" sortable-grid room-drop>
-						<div class="room flat_room" ng-repeat="room in flat" style="background: {{room.template.color}};"
-								ng-style="{'width': {{room.width * 30}} + 'px', 'height': {{room.height * 30}} + 'px'}" room-resize flatmate-drop>
+						<div class="room flat_room" ng-repeat="room in flat"
+								ng-style="{'width': (room.width * 30) + 'px', 'height': (room.height * 30) + 'px', 'background-color': room.template.color}" room-resize flatmate-drop>
 							<span class="room-name">{{room.template.name}}</span>
 							<span class="room-size">{{room.width}}x{{room.height}}</span>
 							<div class="members" sortable-members>
-								<div id="{{user.id}}" title="{{user.name}}" class="flatmate_img room_member" style="background-color: {{user.color}};" ng-repeat="user in room.users"></div>
+								<div id="{{user.id}}" title="{{user.name}}" class="flatmate_img room_member" ng-style="{'background-color': user.color}" ng-repeat="user in room.users"></div>
 							</div>
 						</div>
 					</div>
@@ -59,7 +59,7 @@
 					<h2>Room Templates</h2>
 					<div id="rooms">
 						<div class="room-palette" ng-repeat="room in roomPalette">
-							<div class="room room-drag" style="background-color: {{room.color}};" room-drag>
+							<div class="room room-drag" ng-style="{'background-color': room.color}" room-drag>
 								<span>{{room.name}}</span>
 							</div>
 							<div class="weighting animate-hide" ng-hide="!showWeighting">
@@ -75,7 +75,7 @@
 					<h2>Potential Flatmates<button class="button add-button" ng-click="addFlatmateToPalette()" ng-disabled="flatmatePalette.length >= 15">ADD</button></h2>
 					<div id="flatmates">
 						<div class="flatmate" ng-repeat="flatmate in flatmatePalette">
-							<div id="{{flatmate.id}}" class="flatmate_img flatmate-drag-image" style="background-color: {{flatmate.color}};" flatmate-drag></div>
+							<div id="{{flatmate.id}}" class="flatmate_img flatmate-drag-image" ng-style="{'background-color': flatmate.color}" flatmate-drag></div>
 							<input class="flatmate_name input" ng-model="flatmate.name" ng-change="updateResults()"></input>
 							<button class="button remove-button" ng-click="removeFlatmateFromPalette($index)">X</button>
 						</div>
@@ -92,7 +92,7 @@
 					<h3>Summary per flatmate</h3>
 					<div>
 						<div class="flatmate-cost" ng-repeat="flatmateAmount in flatmateAmounts">
-							<div class="flatmate_img" style="background-color: {{flatmateAmount.color}};"></div>
+							<div class="flatmate_img" ng-style="{'background-color': flatmateAmount.color}"></div>
 							<span>{{flatmateAmount.name}}</span>
 							<span>{{flatmateAmount.amount | currency }}</span>
 						</div>
@@ -101,22 +101,26 @@
 				</div>
 			</div>
 			<div id="social" class="section">
-				<div id="save-controls">
+				<div id="save-controls" class="social-section">
 					<p>Controls</p>
 					<button class="button add-button wide-button" ng-click="reset()">RESET</button>
-					<button class="button add-button wide-button">SAVE</button>
-					<button class="button add-button wide-button">REMOVE</button>
+					<div class="coming-soon-container">
+						<div class="coming-soon"></div>
+						<span class="coming-soon-text">Coming Soon</span>
+						<button class="button wide-button coming-soon-button">SHARE</button>
+					</div>
+					<button class="button add-button wide-button" ng-hide="true">REMOVE</button>
 				</div>
-				<div id="social-controls">
+				<div id="social-controls" class="social-section">
 					<p>Share</p>
 					<a href="https://www.facebook.com/sharer/sharer.php?u=http://costmyflat.com"><img src="./images/share/fb.png" title="Share on Facebook"/></a>
 					<a href="https://plus.google.com/share?url=http://costmyflat.com"><img src="./images/share/gplus.png" title="Share on Google+"/></a>
 					<a href="https://twitter.com/home?status=Are%20you%20paying%20a%20fair%20share%20of%20the%20rent?%20Find%20out%20at%20http://costmyflat.com%20%23costmyflat"><img src="./images/share/twitter.png" title="Share on Twitter"/></a>
 					<a href="https://www.linkedin.com/shareArticle?mini=true&url=http://costmyflat.com&title=Cost%20My%20Flat&summary=Are%20you%20paying%20a%20fair%20share%20of%20the%20rent?%20You%20can%20find%20out%20here!&source="><img src="./images/share/linkedin.png" title="Share on LinkedIn"/></a>
 				</div>
-				<div id="email-us">
+				<div id="email-us" class="social-section">
 					<p>Contact Us</p>
-					<a href="mailto:contact@forgedsoftware.com?subject=Cost My Flat - Feedback"><img src="./images/share/email.png" title="Contact Us"/></a>
+					<a href="mailto:contact@forgedsoftware.com?subject=Cost My Flat - Feedback"><img src="./images/share/email.png" title="Email Us"/></a>
 				</div>
 			</div>
 			<div id="how-it-works" class="section">
