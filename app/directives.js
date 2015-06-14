@@ -65,6 +65,7 @@ addSimpleAppDirective('sortableGrid', function ($scope, element, attrs) {
 				$scope.removeFromArrayById($scope.flat, room);
 				ui.item.remove();
 				$scope.updateResults();
+				$scope.$apply();
 			}
 		}
 	});
@@ -93,6 +94,7 @@ addSimpleAppDirective('sortableMembers', function ($scope, element, attrs) {
 				$scope.removeFromArrayById($scope.room.users, user);
 				ui.item.remove();
 				$scope.updateResults();
+				$scope.$apply();
 			}
 		}
 	});
@@ -106,6 +108,7 @@ addSimpleAppDirective('roomDrop', function ($scope, element, attrs) {
 		drop: function(event, ui) {
 			var roomTemplate = angular.element(ui.draggable).scope().room;
 			$scope.addRoomToFlat(roomTemplate);
+			$scope.$apply();
 		}
 	});
 });
@@ -120,6 +123,7 @@ addSimpleAppDirective('roomResize', function ($scope, element, attrs) {
 			$scope.room.width = width;
 			$scope.room.height = height;
 			$scope.updateResults();
+			$scope.$apply();
 		}
 	});
 });
@@ -132,6 +136,7 @@ addSimpleAppDirective('flatmateDrop', function ($scope, element, attrs) {
 			if ($.inArray(flatmate, $scope.room.users) < 0) {
 				$scope.room.users.push(flatmate);
 				$scope.updateResults();
+				$scope.$apply();
 			}
 		}
 	});

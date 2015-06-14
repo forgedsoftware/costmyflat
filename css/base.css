@@ -263,6 +263,10 @@ h1 {
 	background: #86d993;
 }
 
+.wide-button {
+	width: 6em;
+}
+
 .add-button:hover {
 	background: #57e06c;
 }
