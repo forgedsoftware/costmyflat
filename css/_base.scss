@@ -1,7 +1,25 @@
+@font-face {
+   font-family: 'Delicious-Bold';
+   src: url('Delicious-Bold.otf');
+}
+
 body {
 	background: #555 url("../images/dark_wood.png");
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: 18px;
+}
+
+h1 {
+	font-family: 'Delicious-Bold', sans-serif;
+	color: #FFF;
+	font-size: 120px;
+	text-shadow: 5px 5px 15px #211c66;
+}
+
+h2 {
+	color: #111;
+	padding: 10px;
+	font-size: 24px;
 }
 
 .container {
@@ -21,48 +39,35 @@ body {
 	position: relative;
 	z-index: 6;
 	margin: 20px 20px;
-	background: #E6E6E6;
+	background: $blueprint-gray;
 	min-height: 60px;
-	border-radius: 7px;
 	padding: 20px;
 	color: #555;
-	box-shadow: 5px 5px 10px #C1C1C1;
-}
-
-h2 {
-	color: #111;
-	padding: 10px;
-	font-size: 24px;
+	border-left: 2px solid $blueprint-blue;
 }
 
 /** Title */
 
-#title-container {
+.parallax-container {
 	position: relative;
 	background-color: black;
 	/** Attribute: https://www.flickr.com/photos/degelia/6894587439 **/
 	background: url("../images/blueprints.jpg") no-repeat;
 	background-size: 1100px;
-	/**background-attachment: fixed;*/
-	height: 350px;
 	padding: 60px;
+	height: 350px;
+
+	&.top-container {
+	}
+
+	&.bottom-container {
+		margin-top: -150px;
+	}
 }
 
 #title-container > * {
 	display: inline-block;
 	vertical-align: middle;
-}
-
- @font-face {
-	font-family: 'Delicious-Bold';
-	src: url('Delicious-Bold.otf');
-}
-
-h1 {
-	font-family: 'Delicious-Bold', sans-serif;
-	color: #FFF;
-	font-size: 120px;
-	text-shadow: 5px 5px 15px #211c66;
 }
 
 #flat-logo {
@@ -73,7 +78,9 @@ h1 {
 	margin-right: 40px;
 }
 
-#angled {
+// Angled
+
+.angled {
 	background-color: white;
 	position: relative;
 	z-index: 2;
@@ -81,29 +88,16 @@ h1 {
 	width: 150%;
 	transform-origin: left top;
 	transform: rotate(3deg);
+}
+
+.angled-top {
+	@extend .angled;
 	margin-top: -58px;
 }
 
-#angled-bottom {
-	background-color: white;
-	position: relative;
-	z-index: 2;
-	height: 300px;
-	width: 150%;
-	transform-origin: left top;
-	transform: rotate(3deg);
+.angled-bottom {
+	@extend .angled;
 	margin-top: -200px;
-}
-
-#bottom-container {
-	position: relative;
-	/** Attribute: https://www.flickr.com/photos/degelia/6894587439 **/
-	background: url("../images/blueprints.jpg") no-repeat;
-	background-size: 1100px;
-	/**background-attachment: fixed;*/
-	height: 350px;
-	padding: 60px;
-	margin-top: -150px;
 }
 
 /** Controls **/
@@ -152,15 +146,14 @@ h1 {
 	margin: 10px;
 	padding: 5px;
 	min-height: 350px;
-	border-radius: 5px;
 	flex: 2;
 	overflow: hidden;
-	background: #75706B;
-	background: linear-gradient(to bottom, #75706B 0%,#AAA 100%); /* W3C */
+	background: $flat-surface-dark;
+	background: linear-gradient(to bottom, $flat-surface-light 0%, $flat-surface-dark 100%); /* W3C */
 }
 
 .flat-border {
-	outline: 5px #0D37F8 dashed;
+	outline: 5px $blueprint-blue dashed;
 }
 
 .room-placeholder {
@@ -232,6 +225,19 @@ h1 {
 .weighting {
 	width: 90px;
 	margin: 5px;
+}
+
+.drag-me-image {
+	margin-left: 16px;
+	width: 130px;
+	margin-bottom: -20px;
+}
+
+.drag-me-flatmate {
+	margin-left: 28px;
+	width: 130px;
+	margin-top: -20px;
+	margin-bottom: -5px;
 }
 
 .animate-hide > * {

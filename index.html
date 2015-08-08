@@ -7,10 +7,8 @@
 		<meta name="keywords" content="flat,rental,cost,charge,divide,calculate,calculator,drag,drop,per room,flatmate,pay,payment,html5">
 		<meta name="author" content="Matthew Harward">
 
-		<link rel='stylesheet' href='css/reset.css' type='text/css'/>
 		<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-		<link rel='stylesheet' href='css/base.css' type='text/css'/>
-		<link rel='stylesheet' href='css/buttons.css' type='text/css'/>
+		<link rel='stylesheet' href='css/style.css' type='text/css'/>
 
 		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -33,19 +31,19 @@
 
 				function parallax(){
 					var scrolled = $(window).scrollTop();
-					$('#title-container').css('top', (scrolled * 0.30) + 'px'); // here you scroll downward
-					$('#bottom-container').css('bottom', (-scrolled * 0.30 + 350) + 'px'); // here you scroll downward
+					$('.top-container').css('top', (scrolled * 0.30) + 'px'); // here you scroll downward
+					$('.bottom-container').css('bottom', (-scrolled * 0.30 + 350) + 'px'); // here you scroll downward
 				}
 			});
 		</script>
 	</head>
 	<body>
 		<div class="container body-container" ng-controller="FlatController">
-			<div id="title-container">
+			<div class="parallax-container top-container">
 				<div id="flat-logo"></div>
 				<h1>Cost My Flat</h1>
 			</div>
-			<div id="angled"></div>
+			<div class="angled-top"></div>
 			<div id="settings" class="section">
 				<p>Ever had to work out how my each flatmate should pay for rent? Need a transparent system that is just plain fair? Look no further! Model your flat below and we'll tell you how much each flatmate should pay and why.</p>
 				<div class="control">
@@ -72,7 +70,7 @@
 				<div id="palette" class="section">
 					<h2>Palette</h2>
 					<p>Drag and drop rooms onto your flat, and flatmates onto the rooms they will use.</p>
-					<h2>Room Templates</h2>
+					<h2>Room Templates<img src="images/drag-me.png" class="drag-me-image"/></h2>
 					<div id="rooms">
 						<div class="room-palette" ng-repeat="room in roomPalette">
 							<div class="room room-drag" ng-style="{'background-color': room.color}" room-drag>
@@ -89,6 +87,7 @@
 						<label class='tgl-btn' data-tg-off='OFF' data-tg-on='ON' for='cb3'></label>
 					</div>
 					<h2>Potential Flatmates<button class="button add-button" ng-click="addFlatmateToPalette()" ng-disabled="flatmatePalette.length >= 15">ADD</button></h2>
+					<img src="images/drag-me.png" class="drag-me-flatmate"/>
 					<div id="flatmates">
 						<div class="flatmate" ng-repeat="flatmate in flatmatePalette">
 							<div id="{{flatmate.id}}" class="flatmate_img flatmate-drag-image" ng-style="{'background-color': flatmate.color}" flatmate-drag></div>
@@ -143,8 +142,8 @@
 				<h2>How It Works</h2>
 				<p>Some text here</h2>
 			</div>
-			<div id="angled-bottom"></div>
-			<div id="bottom-container"></div>
+			<div class="angled-bottom"></div>
+			<div class="parallax-container bottom-container"></div>
 		</div>
 		<footer>
 			<div class="container side_by_side">
