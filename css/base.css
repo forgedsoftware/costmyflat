@@ -1,5 +1,5 @@
 body {
-	background: #555 url("../images/wood_pattern.png");
+	background: #555 url("../images/dark_wood.png");
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: 18px;
 }
@@ -14,10 +14,12 @@ body {
 	background-color: #FFF;
 	margin-top: 0px;
 	margin-bottom: 0px;
-	padding-bottom: 100px;
+	overflow: hidden;
 }
 
 .section {
+	position: relative;
+	z-index: 6;
 	margin: 20px 20px;
 	background: #E6E6E6;
 	min-height: 60px;
@@ -35,26 +37,80 @@ h2 {
 
 /** Title */
 
+#title-container {
+	position: relative;
+	background-color: black;
+	/** Attribute: https://www.flickr.com/photos/degelia/6894587439 **/
+	background: url("../images/blueprints.jpg") no-repeat;
+	background-size: 1100px;
+	/**background-attachment: fixed;*/
+	height: 350px;
+	padding: 60px;
+}
+
 #title-container > * {
 	display: inline-block;
 	vertical-align: middle;
 }
 
+ @font-face {
+	font-family: 'Delicious-Bold';
+	src: url('Delicious-Bold.otf');
+}
+
 h1 {
-	color: #555;
-	font-size: 38px;
-	font-weight: bold;
+	font-family: 'Delicious-Bold', sans-serif;
+	color: #FFF;
+	font-size: 120px;
+	text-shadow: 5px 5px 15px #211c66;
 }
 
 #flat-logo {
-	background: url("../images/flat-icon.png") no-repeat;
+	background: url("../images/flat-icon-blue.png") no-repeat;
 	background-size: 60px 60px;
 	width: 60px;
 	height: 60px;
-	margin: 20px 5px 20px 20px;
+	margin-right: 40px;
+}
+
+#angled {
+	background-color: white;
+	position: relative;
+	z-index: 2;
+	height: 300px;
+	width: 150%;
+	transform-origin: left top;
+	transform: rotate(3deg);
+	margin-top: -58px;
+}
+
+#angled-bottom {
+	background-color: white;
+	position: relative;
+	z-index: 2;
+	height: 300px;
+	width: 150%;
+	transform-origin: left top;
+	transform: rotate(3deg);
+	margin-top: -200px;
+}
+
+#bottom-container {
+	position: relative;
+	/** Attribute: https://www.flickr.com/photos/degelia/6894587439 **/
+	background: url("../images/blueprints.jpg") no-repeat;
+	background-size: 1100px;
+	/**background-attachment: fixed;*/
+	height: 350px;
+	padding: 60px;
+	margin-top: -150px;
 }
 
 /** Controls **/
+
+#settings {
+	margin-top: -200px;
+}
 
 .control {
 	padding: 20px;
@@ -382,7 +438,7 @@ footer {
 }
 
 .side_by_side {
-	
+
 }
 
 .footer_section {

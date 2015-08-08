@@ -23,6 +23,21 @@
 		<script src="app/services/persistenceService.js"></script>
 		<script src="app/controllers/FlatController.js"></script>
 		<script src="app/directives.js"></script>
+
+		<script>
+			$(document).ready(function () {
+
+				$(window).scroll(function(e){
+				  parallax();
+				});
+
+				function parallax(){
+					var scrolled = $(window).scrollTop();
+					$('#title-container').css('top', (scrolled * 0.30) + 'px'); // here you scroll downward
+					$('#bottom-container').css('bottom', (-scrolled * 0.30 + 350) + 'px'); // here you scroll downward
+				}
+			});
+		</script>
 	</head>
 	<body>
 		<div class="container body-container" ng-controller="FlatController">
@@ -30,6 +45,7 @@
 				<div id="flat-logo"></div>
 				<h1>Cost My Flat</h1>
 			</div>
+			<div id="angled"></div>
 			<div id="settings" class="section">
 				<p>Ever had to work out how my each flatmate should pay for rent? Need a transparent system that is just plain fair? Look no further! Model your flat below and we'll tell you how much each flatmate should pay and why.</p>
 				<div class="control">
@@ -127,6 +143,8 @@
 				<h2>How It Works</h2>
 				<p>Some text here</h2>
 			</div>
+			<div id="angled-bottom"></div>
+			<div id="bottom-container"></div>
 		</div>
 		<footer>
 			<div class="container side_by_side">
