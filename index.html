@@ -6,12 +6,14 @@
 		<meta name="description" content="A website providing an easy to work out the rental costs for each flatmate." />
 		<meta name="keywords" content="flat,rental,cost,charge,divide,calculate,calculator,drag,drop,per room,flatmate,pay,payment,html5">
 		<meta name="author" content="Matthew Harward">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<link rel='stylesheet' href='css/style.css' type='text/css'/>
 
 		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<script src="third-party/jquery.ui.touch-punch.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-animate.js"></script>
 		<script src="app/masks.js"></script>
@@ -135,12 +137,26 @@
 				</div>
 				<div id="email-us" class="social-section">
 					<p>Contact Us</p>
-					<a href="mailto:contact@forgedsoftware.com?subject=Cost My Flat - Feedback"><img src="./images/share/email.png" title="Email Us"/></a>
+					<a href="mailto:contact@forgedsoftware.com?subject=Cost My Flat - Feedback">
+						<img src="./images/share/email.png" title="Email Us"/>
+					</a>
 				</div>
 			</div>
 			<div id="how-it-works" class="section">
 				<h2>How It Works</h2>
-				<p>Some text here</h2>
+				<p> </p>
+			</div>
+			<div id="a-bit-of-history" class="section">
+				<h2>A Bit of History</h2>
+				<p>I started flatting over 10 years ago. I quickly realised that while
+				it was easy to guess how much one should be paying to flat, I would
+				resort to complex spreadsheets to justify my gut beliefs. In 2011, I
+				quantified it <a href="http://www.hubristicdiversions.com/?p=530">on my blog</a>.</p>
+				<p>I uploaded a simple spreadsheet and tried to quantify a solution to this pressing
+				problem, along with a bunch of limitations, some of which have been
+				addressed in this website. People seemed interested and I felt that
+				turning it into a website would be a fun pet project
+				so here we are. I hope it makes your flatting experience just a tad easier.</p>
 			</div>
 			<div class="angled-bottom"></div>
 			<div class="parallax-container bottom-container"></div>
@@ -148,13 +164,21 @@
 		<footer>
 			<div class="container side_by_side">
 				<div class="footer_section">
-					<img class="icon" src="./images/forged-icon.png" />Created by <a href="http://forgedsoftware.com">Forged Software</a>
+					<img class="icon" src="./images/forged-icon.png" />Created by
+						<a href="http://forgedsoftware.com">Forged Software</a>
 				</div>
 				<div class="footer_section">
-					<img class="icon" src="./images/github-icon.png" />Hosted on <a href="https://github.com/forgedsoftware/costmyflat">GitHub</a>
+					<img class="icon" src="./images/github-icon.png" />Hosted on
+						<a href="https://github.com/forgedsoftware/costmyflat">GitHub</a>
 				</div>
 				<div class="footer_section">
-					<span>Built with: <a href="https://jqueryui.com/">jQuery-UI</a>, <a href="https://angularjs.org/">AngularJS</a>, <a href="http://flatuicolors.com">flatuicolors</a>, and <a href="http://iconmonstr.com/">iconmonstr</a></span>
+					<span>
+						Built with: <a href="https://jqueryui.com/">jQuery-UI</a>,
+						<a href="http://touchpunch.furf.com/">jQuery-UI Touch Punch</a>,
+						<a href="https://angularjs.org/">AngularJS</a>,
+						<a href="http://flatuicolors.com">flatuicolors</a>,
+						and <a href="http://iconmonstr.com/">iconmonstr</a>
+					</span>
 				</div>
 			</div>
 		</footer>

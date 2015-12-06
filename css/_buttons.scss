@@ -19,7 +19,7 @@
   display: block;
   width: 4em;
   height: 2em;
-  box-shadow: 5px 5px 10px #C1C1C1;
+  box-shadow: 5px 5px 10px $light-gray;
   position: relative;
   cursor: pointer;
   -webkit-user-select: none;
@@ -67,7 +67,7 @@
   position: absolute;
   line-height: 2em;
   font-weight: bold;
-  color: #fff;
+  color: $white;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 
@@ -90,7 +90,7 @@
 }
 
 .tgl-skewed:checked + .tgl-btn {
-  background: #86d993;
+  background: $action-light-green;
 }
 
 .tgl-skewed:checked + .tgl-btn:before {

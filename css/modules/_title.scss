@@ -1,0 +1,55 @@
+.parallax-container {
+	position: relative;
+	background-color: $black;
+	/** Attribute: https://www.flickr.com/photos/degelia/6894587439 **/
+	background: url("../images/blueprints.jpg") no-repeat;
+	background-size: 1100px;
+	padding: 60px;
+	height: 250px;
+
+	&.bottom-container {
+		margin-top: -150px;
+	}
+}
+
+#title-container > * {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#flat-logo {
+	background: url("../images/flat-icon-blue.png") no-repeat;
+	background-size: 60px 60px;
+	width: 60px;
+	height: 60px;
+	margin-right: 40px;
+	float: left;
+	@media #{$smart-phone-size} {
+		margin-top: 10px;
+	}
+	@media #{$laptop-size} {
+		margin-top: 30px;
+	}
+}
+
+// Angled
+
+.angled {
+	background-color: $white;
+	position: relative;
+	z-index: 2;
+	height: 300px;
+	width: 150%;
+	transform-origin: left top;
+	transform: rotate(3deg);
+}
+
+.angled-top {
+	@extend .angled;
+	margin-top: -58px;
+}
+
+.angled-bottom {
+	@extend .angled;
+	margin-top: -200px;
+}

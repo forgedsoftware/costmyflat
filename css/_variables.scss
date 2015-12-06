@@ -1,5 +1,32 @@
-$blueprint-blue: #353EB3;
-$blueprint-gray: #E0DFDD;
+// Colors
 
 $flat-surface-light: #D8CDC5;
-$flat-surface-dark: #918b84;
+$flat-surface-dark: #A49E96;
+
+$black: #000;
+$dark-gray: #222;
+$medium-gray: #444;
+$shadow-gray: #555;
+$almost-gray: #AAA;
+$light-gray: #CCC;
+$almost-white: #EEE;
+$white: #FFF;
+
+$blueprint-highlight: #211C66;
+$blueprint-blue: #353EB3;
+$blueprint-light-blue: #5059C2;
+$blueprint-gray: #E0DFDD;
+
+$action-light-green: #86D993;
+$action-green: #57E06C;
+
+$delete-light-red: #F45C44;
+$delete-red: #FF3A19;
+
+$highlight-orange: #FFA500;
+
+// Media Queries
+
+$smart-phone-size: "only screen and (min-width: 480px)";
+$laptop-size: "only screen and (min-width: 768px)";
+$desktop-size: "only screen and (min-width: 1382px)";

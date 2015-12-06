@@ -1,0 +1,135 @@
+.room {
+	color: $almost-white;
+	margin: 5px;
+	cursor: move;
+	border: 2px $medium-gray;
+	font-size: 16px;
+	overflow: hidden;
+}
+
+.room-drag {
+	text-align: center;
+	box-shadow: 5px 5px 10px $light-gray;
+}
+
+.room-drag {
+	line-height: 3;
+	width: 90px;
+	height: 50px;
+}
+
+#rooms {
+	margin-left: 10px;
+	overflow: auto;
+}
+
+.room-palette {
+	margin: 5px;
+	float: left;
+}
+
+.weighting {
+	width: 90px;
+	margin: 5px;
+}
+
+.drag-me-image {
+	margin-left: 16px;
+	width: 130px;
+	margin-bottom: -20px;
+}
+
+.drag-me-flatmate {
+	margin-left: 28px;
+	width: 130px;
+	margin-top: -20px;
+	margin-bottom: -5px;
+}
+
+.animate-hide > * {
+	-webkit-transition: all linear 0.2s;
+	transition: all linear 0.2s;
+	opacity: 1;
+}
+
+.animate-hide.ng-hide > * {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	height: 0px;
+	opacity: 0;
+}
+
+.weighting-input {
+	text-align: center;
+	padding: 3px;
+}
+
+#flatmates {
+	margin-left: 20px;
+	overflow: auto;
+}
+
+.flatmate {
+	margin-bottom: 5px;
+}
+
+.flatmate_name {
+	margin: 5px;
+	height: 22px;
+	width: 100px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-top: 0px;
+}
+
+.flatmate_img {
+	display: inline-block;
+	vertical-align: middle;
+	background: url("../images/person-icon.png") no-repeat;
+	width: 32px;
+	height: 32px;
+	box-shadow: 2px 2px 6px $shadow-gray;
+}
+
+.flatmate-drag-image {
+	cursor: move;
+	margin: 5px;
+	float: left;
+}
+
+.button {
+	margin: 5px;
+	line-height: 2em;
+	font-weight: bold;
+	color: $white;
+	text-align: center;
+	cursor: pointer;
+	font-size: 18px;
+	width: 4em;
+	height: 2em;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+	outline: 0;
+	box-sizing: border-box;
+	border: none;
+	box-shadow: 5px 5px 10px $light-gray;
+}
+
+.add-button {
+	margin-left: 15px;
+	background: $action-light-green;
+}
+
+.add-button:hover {
+	background: $action-green;
+}
+
+.remove-button {
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	background: $delete-light-red;
+}
+
+.remove-button:hover {
+	background: $delete-red;
+}

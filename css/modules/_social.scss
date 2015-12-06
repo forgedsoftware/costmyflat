@@ -1,0 +1,62 @@
+#social {
+	overflow: auto;
+}
+
+.social-section {
+	float: none;
+	margin-right: 80px;
+}
+
+.social-section > * {
+	margin: 5px;
+}
+
+.social-section > a > img {
+	height: 2em;
+	opacity: 0.8;
+}
+
+.social-section > a > img:hover {
+	opacity: 1;
+}
+
+.wide-button {
+	width: 6em;
+	margin-top: 0px;
+}
+
+.coming-soon-container {
+	margin-top: 0px;
+	display: inline-block;
+}
+
+.coming-soon-button {
+	background-color: $light-gray;
+}
+
+.coming-soon-button:hover {
+	background-color: $almost-gray;
+}
+
+.coming-soon {
+	position: absolute;
+	font-size: 0.6em;
+	opacity: 0.6;
+	margin-left: 5px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 3.5em 7em 0 0;
+	border-color: $highlight-orange transparent transparent transparent;
+}
+
+.coming-soon-text {
+	position: absolute;
+	float: left;
+	margin-left: 5px;
+	padding: 3px;
+	font-size: 0.55em;
+	text-align: left;
+	width: 2em;
+	font-weight: bold;
+}

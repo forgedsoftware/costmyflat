@@ -1,0 +1,30 @@
+@media (min-width: 900px) {
+	
+	#horizontal-sections {
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		overflow: hidden;
+	}
+
+	#horizontal-sections > div{
+		margin: 0px 20px 10px 20px;
+	}
+
+	#results {
+		margin-top: 10px;
+	}
+
+	#flat {
+		flex: 3;
+		margin-right: 0px !important;
+	}
+
+	#palette {
+		flex: 2;
+	}
+
+	.social-section {
+		float: left;
+	}
+}

@@ -62,7 +62,7 @@ table {
   display: block;
   width: 4em;
   height: 2em;
-  box-shadow: 5px 5px 10px #C1C1C1;
+  box-shadow: 5px 5px 10px #CCC;
   position: relative;
   cursor: pointer;
   -webkit-user-select: none;
@@ -104,7 +104,7 @@ table {
   position: absolute;
   line-height: 2em;
   font-weight: bold;
-  color: #fff;
+  color: #FFF;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); }
 
 .tgl-skewed + .tgl-btn:after {
@@ -122,7 +122,7 @@ table {
   left: -10%; }
 
 .tgl-skewed:checked + .tgl-btn {
-  background: #86d993; }
+  background: #86D993; }
 
 .tgl-skewed:checked + .tgl-btn:before {
   left: -100%; }
@@ -138,24 +138,39 @@ table {
   src: url("Delicious-Bold.otf"); }
 body {
   background: #555 url("../images/dark_wood.png");
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 18px; }
 
 h1 {
   font-family: 'Delicious-Bold', sans-serif;
-  color: #FFF;
-  font-size: 120px;
-  text-shadow: 5px 5px 15px #211c66; }
+  color: #EEE;
+  font-size: 65px;
+  text-shadow: 5px 5px 15px #211C66; }
+  @media only screen and (min-width: 480px) {
+    h1 {
+      font-size: 80px; } }
+  @media only screen and (min-width: 768px) {
+    h1 {
+      font-size: 120px; } }
 
 h2 {
-  color: #111;
+  color: #222;
   padding: 10px;
   font-size: 24px; }
 
+a, a:visited {
+  color: #353EB3; }
+
+a:hover {
+  color: #5059C2; }
+
+p {
+  line-height: 20px;
+  margin-bottom: 15px; }
+
 .container {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1100px; }
+  max-width: 1100px;
+  margin: 0 auto; }
 
 .body-container {
   background-color: #FFF;
@@ -171,17 +186,16 @@ h2 {
   min-height: 60px;
   padding: 20px;
   color: #555;
-  border-left: 2px solid #353EB3; }
+  border-left: 3px solid #353EB3; }
 
-/** Title */
 .parallax-container {
   position: relative;
-  background-color: black;
+  background-color: #000;
   /** Attribute: https://www.flickr.com/photos/degelia/6894587439 **/
   background: url("../images/blueprints.jpg") no-repeat;
   background-size: 1100px;
   padding: 60px;
-  height: 350px; }
+  height: 250px; }
   .parallax-container.bottom-container {
     margin-top: -150px; }
 
@@ -194,10 +208,17 @@ h2 {
   background-size: 60px 60px;
   width: 60px;
   height: 60px;
-  margin-right: 40px; }
+  margin-right: 40px;
+  float: left; }
+  @media only screen and (min-width: 480px) {
+    #flat-logo {
+      margin-top: 10px; } }
+  @media only screen and (min-width: 768px) {
+    #flat-logo {
+      margin-top: 30px; } }
 
 .angled, .angled-top, .angled-bottom {
-  background-color: white;
+  background-color: #FFF;
   position: relative;
   z-index: 2;
   height: 300px;
@@ -211,12 +232,11 @@ h2 {
 .angled-bottom {
   margin-top: -200px; }
 
-/** Controls **/
 #settings {
-  margin-top: -200px; }
-
-.control {
-  padding: 20px; }
+  margin-top: -240px; }
+  @media only screen and (min-width: 768px) {
+    #settings {
+      margin-top: -200px; } }
 
 .control > * {
   margin-left: 5px;
@@ -238,7 +258,6 @@ h2 {
 #weighting-toggle > span {
   padding: 10px; }
 
-/** Flat **/
 #flat {
   display: flex;
   flex-flow: column; }
@@ -249,8 +268,8 @@ h2 {
   min-height: 350px;
   flex: 2;
   overflow: hidden;
-  background: #918b84;
-  background: linear-gradient(to bottom, #D8CDC5 0%, #918b84 100%);
+  background: #A49E96;
+  background: linear-gradient(to bottom, #D8CDC5 0%, #A49E96 100%);
   /* W3C */ }
 
 .flat-border {
@@ -262,7 +281,7 @@ h2 {
   height: 90px; }
 
 .room-border {
-  outline: 3px #0D37F8 dashed; }
+  outline: 3px #353EB3 dashed; }
 
 .flat_room {
   float: left;
@@ -284,7 +303,6 @@ h2 {
   margin-top: 5px;
   box-shadow: 2px 2px 6px #555; }
 
-/** Palette **/
 .room {
   color: #EEE;
   margin: 5px;
@@ -295,7 +313,7 @@ h2 {
 
 .room-drag {
   text-align: center;
-  box-shadow: 5px 5px 10px #C1C1C1; }
+  box-shadow: 5px 5px 10px #CCC; }
 
 .room-drag {
   line-height: 3;
@@ -340,21 +358,11 @@ h2 {
   text-align: center;
   padding: 3px; }
 
-.btn-down {
-  margin: 10px;
-  background: #75706B;
-  background: linear-gradient(to bottom, #75706b 0%, #c1c1c1 100%);
-  /* W3C */ }
-
-.btn-up {
-  margin: 10px; }
-
 #flatmates {
   margin-left: 20px;
   overflow: auto; }
 
 .flatmate {
-  /*float: left;*/
   margin-bottom: 5px; }
 
 .flatmate_name {
@@ -371,7 +379,6 @@ h2 {
   background: url("../images/person-icon.png") no-repeat;
   width: 32px;
   height: 32px;
-  float: left;
   box-shadow: 2px 2px 6px #555; }
 
 .flatmate-drag-image {
@@ -383,7 +390,7 @@ h2 {
   margin: 5px;
   line-height: 2em;
   font-weight: bold;
-  color: #fff;
+  color: #FFF;
   text-align: center;
   cursor: pointer;
   font-size: 18px;
@@ -393,25 +400,24 @@ h2 {
   outline: 0;
   box-sizing: border-box;
   border: none;
-  box-shadow: 5px 5px 10px #C1C1C1; }
+  box-shadow: 5px 5px 10px #CCC; }
 
 .add-button {
   margin-left: 15px;
-  background: #86d993; }
+  background: #86D993; }
 
 .add-button:hover {
-  background: #57e06c; }
+  background: #57E06C; }
 
 .remove-button {
   width: 32px;
   height: 32px;
   line-height: 32px;
-  background: #f45c44; }
+  background: #F45C44; }
 
 .remove-button:hover {
   background: #FF3A19; }
 
-/** Costing */
 #costing {
   margin-left: 20px; }
 
@@ -428,7 +434,6 @@ h2 {
   display: inline-block;
   padding: 5px 10px 0px 10px; }
 
-/** Controls **/
 #social {
   overflow: auto; }
 
@@ -455,7 +460,7 @@ h2 {
   display: inline-block; }
 
 .coming-soon-button {
-  background-color: #C1C1C1; }
+  background-color: #CCC; }
 
 .coming-soon-button:hover {
   background-color: #AAA; }
@@ -469,7 +474,7 @@ h2 {
   height: 0;
   border-style: solid;
   border-width: 3.5em 7em 0 0;
-  border-color: orange transparent transparent transparent; }
+  border-color: #FFA500 transparent transparent transparent; }
 
 .coming-soon-text {
   position: absolute;
@@ -481,11 +486,9 @@ h2 {
   width: 2em;
   font-weight: bold; }
 
-/** How it works */
 #how-it-works {
   margin: 20px; }
 
-/** Footer **/
 footer {
   bottom: 0px;
   width: 100%;
@@ -505,7 +508,6 @@ footer {
   width: 25px;
   vertical-align: middle; }
 
-/** Media queries */
 @media (min-width: 900px) {
   #horizontal-sections {
     display: -webkit-flex;

@@ -1,0 +1,32 @@
+#settings {
+	margin-top: -240px;
+
+	@media #{$laptop-size} {
+		margin-top: -200px;
+	}
+}
+
+.control > * {
+	margin-left: 5px;
+	margin-top: 10px;
+}
+
+.input {
+	font-size: 18px;
+	max-width: 170px;
+	padding: 3px;
+	cursor: pointer;
+}
+
+#weighting-toggle {
+	padding: 10px;
+	overflow: auto;
+}
+
+#weighting-toggle > * {
+	float: left;
+}
+
+#weighting-toggle > span {
+	padding: 10px;
+}
